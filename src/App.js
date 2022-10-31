@@ -8,6 +8,7 @@ import Productos from "./pages/Productos";
 import QuienesSomos from "./pages/QuienesSomos";
 import Carrito from "./pages/Carrito";
 import Contacto from "./pages/Contacto";
+import ContextProvider from "./helpers/contextState";
 
 export default function App() {
     return (
@@ -29,9 +30,11 @@ export default function App() {
 function Layout() {
     return (
         <div>
-            <Navbar />
-            <Outlet />
-            <Footer />
+            <ContextProvider>
+                <Navbar />
+                <Outlet />
+                <Footer />
+            </ContextProvider>
         </div>
     );
 }
