@@ -2,11 +2,17 @@ import { Link } from "react-router-dom";
 
 export default function Card(props) {
     //let item = 0
-    let enCarrito = true
+    function BotonCarrito(enCarrito) {
+        if (enCarrito) {
+            return <div className="rounded-full text-center bg-green-500 mb-1">En Carrito</div>
+        } else {
+            return <div className="rounded-full text-center bg-green-500 mb-1 hidden">En Carrito</div>
+        }
+    }
 
     return (
         <div className="text-center p-2 border-2 border-[#71a7ab] hover:bg-[#71a7ab] hover:cursor-pointer rounded-sm transition">
-            <div className="rounded-full text-center bg-green-500 mb-1 hidden">En Carrito</div>
+            <BotonCarrito enCarrito={true}></BotonCarrito>
             <Link to={props.href}>
                 <img className="w-full" src={props.thumbnail} alt="" />
                 <h3 className="text-lg font-bold pt-1 leading-tight">{props.title}</h3>
