@@ -11,4 +11,4 @@ function Carrito() {
 }
 
 export default Carrito;
-//todo
+//traer carrito del context state y mostrar precio total

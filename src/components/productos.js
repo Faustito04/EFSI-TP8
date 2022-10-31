@@ -7,10 +7,11 @@ import { getProductos } from "../utils/axiosClient";
 export default function Productos({ cant, title }) {
     const [productos, setProductos] = useState([]);
 
-    useEffect((cant) => {
+    useEffect(() => {
         (async () => {
             const response = await getProductos();
-            if (cant) setProductos(response.slice(0, cant)) ?? setProductos(response);
+            console.log(cant)
+            if (!cant) {setProductos(response)} else {setProductos(response.slice(0, cant))} 
         })()
     }, []);
 

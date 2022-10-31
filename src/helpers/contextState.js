@@ -1,33 +1,10 @@
-// import { getProductos } from "../utils/axiosClient";
-// import { createContext, useContext } from "react";
-
-// export const initialState = {
-//     productos: getProductos,
-//     carrito: []
-// }
-
-// export const initialContext = {
-//     contextState: initialState,
-//     setContextState: () => {}
-// }
-
-// export const ContextProvider = ({ children }) => {
-//     return (
-//         <Cont.Provider value={{ contextState, setContextState }}>{children}</Cont.Provider>
-//     )
-// }
-
-// const Cont = createContext<{ contextState, setContextState }>(initialContext);
-
-// export const useContextState = () => useContext(Cont);
-
-
 import { createContext, useState } from 'react';
 import { getProductos } from '../utils/axiosClient';
 
 export const Context = createContext({
     productos: [],
-    carrito: []
+    carrito: [],
+    forms: []
 });
 
 const ContextProvider = () => {
@@ -39,8 +16,12 @@ const ContextProvider = () => {
         return productos;
     }
 
-    const añadirProducto = async (id, cant) => {
+    const getById = async (id) => {
+        //let item = productos
+    }
 
+    const añadirProducto = async (item, cant) => {
+        setCarrito(carrito.push(...item, cant))
     }
 
     const eliminarProducto = async (id) => {
@@ -48,7 +29,7 @@ const ContextProvider = () => {
     }
 
     return (
-        <Context.Provider value={{ productos, carrito, eliminarProducto, añadirProducto, newProductos }}>
+        <Context.Provider value={{ productos, carrito, eliminarProducto, añadirProducto, newProductos, getById }}>
         </Context.Provider>
     );
 };
@@ -56,3 +37,4 @@ const ContextProvider = () => {
 export default ContextProvider;
 
 export const useContext = () => useContext(Context);
+//todo

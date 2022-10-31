@@ -26,3 +26,4 @@ export default function Producto() {
         </section>
     );
 }
+//añadir lo mismo que en la card

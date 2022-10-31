@@ -30,11 +30,9 @@ export default function App() {
 function Layout() {
     return (
         <div>
-            <ContextProvider>
                 <Navbar />
                 <Outlet />
                 <Footer />
-            </ContextProvider>
         </div>
     );
 }
