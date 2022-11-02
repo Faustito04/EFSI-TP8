@@ -1,19 +1,14 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useState, useContext} from "react";
+import {ProductoContext} from "../helpers/productoContext"
 import { Link } from "react-router-dom";
 import Card from "./card";
-import { getProductos } from "../utils/axiosClient";
 
 export default function Productos({ cant, title }) {
+    const context = useContext(ProductoContext);
     const [productos, setProductos] = useState([]);
 
-    useEffect(() => {
-        (async () => {
-            const response = await getProductos();
-            console.log(cant)
-            if (!cant) {setProductos(response)} else {setProductos(response.slice(0, cant))} 
-        })()
-    }, []);
+    if (!cant) {setProductos(context.productos)} else {setProductos(context.productos.slice(0, cant))}
 
     return (
         <section className="mx-auto w-[95%] md:w-[750px]">

@@ -7,7 +7,7 @@ export default function Card(props) {
     let [cant, setCantidad] = useState(0)
 
     function BotonCarrito(enCarrito) {
-        if (enCarrito) {
+        if (!enCarrito) {
             return <div className="rounded-full text-center bg-green-500 mb-1">En Carrito</div>
         }
     }
@@ -20,13 +20,11 @@ export default function Card(props) {
                 <h3 className="text-lg font-bold pt-1 leading-tight">{props.title}</h3>
                 <p className="leading-tight">{props.description}</p>
             </Link>
-            <input type="number" className="m-2 border-b border-gray-300" placeholder="0" onChange={(evento) => {setCantidad(evento.target.value)}}></input>
-            <button className="w-fit px-4 py-2 bg-blue-200 rounded-md" onClick={context.añadirProducto(props.id, cant)}>Añadir</button>
-            <button className="w-fit px-4 py-2 bg-blue-200 rounded-md" onClick={context.eliminarProducto(props.id)}>Eliminar</button>
+            <input type="number" className="m-2 border-b border-gray-300" onChange={(evento) => {setCantidad(evento.target.value)}}>0</input>
+            <button className="w-fit px-4 py-2 bg-blue-200 rounded-md m-2" onClick={() => context.añadirProducto(props.id, cant)}>Añadir</button>
+            <button className="w-fit px-4 py-2 bg-blue-200 rounded-md" onClick={() => context.eliminarProducto(props.id)}>Eliminar</button>
         </div>
     )
 }
 
 //botones y chequear si ya esta en el carrito el item
-//onClick="añadir_carrito"
-//onClick="eliminar_carrito"

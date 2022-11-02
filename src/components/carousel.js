@@ -3,7 +3,7 @@ import React from "react"
 const CarouselImage = ({ image }) => {
     return (
         <div className="carousel-item active">
-            <img src={image} className="d-block w-100" alt="slider image" />
+            <img src={image} className="d-block w-100" alt="slider" />
         </div>
     )
 }
