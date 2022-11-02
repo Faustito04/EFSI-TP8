@@ -8,22 +8,27 @@ import Productos from "./pages/Productos";
 import QuienesSomos from "./pages/QuienesSomos";
 import Carrito from "./pages/Carrito";
 import Contacto from "./pages/Contacto";
-import ContextProvider from "./helpers/contextState";
+import ProductoContextProvider from "./helpers/productoContext";
+import FormContextProvider from "./helpers/formsContext";
 
 export default function App() {
     return (
-        <Router>
-            <Routes>
-                <Route path="/" element={<Layout />}>
-                    <Route index element={<Home />} />
-                    <Route path="productos" element={<Productos />} />
-                    <Route path="producto/:id" element={<Producto />} />
-                    <Route path="quienessomos" element={<QuienesSomos />} />
-                    <Route path="contacto" element={<Contacto />} />
-                    <Route path="carrito" element={<Carrito />} />
-                </Route>
-            </Routes>
-        </Router>
+        <ProductoContextProvider>
+            <FormContextProvider>
+                <Router>
+                    <Routes>
+                        <Route path="/" element={<Layout />}>
+                            <Route index element={<Home />} />
+                            <Route path="productos" element={<Productos />} />
+                            <Route path="producto/:id" element={<Producto />} />
+                            <Route path="quienessomos" element={<QuienesSomos />} />
+                            <Route path="contacto" element={<Contacto />} />
+                            <Route path="carrito" element={<Carrito />} />
+                        </Route>
+                    </Routes>
+                </Router>
+            </FormContextProvider>
+        </ProductoContextProvider>
     );
 }
 
