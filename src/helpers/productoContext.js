@@ -1,22 +1,21 @@
 import { createContext, useState } from 'react';
 import { getProductos } from '../utils/axiosClient';
 
+const firstProductos = async () => {
+    const productos = await getProductos()
+    
+    return productos.map((producto) => ({
+        ...producto,
+        cantidadCarrito: 0
+    }))
+}
+
 export const ProductoContext = createContext({
-    productos: []
+    productos: [firstProductos()]
 });
 
 const ProductoContextProvider = ({children}) => {
     const [productos, setProductos] = useState([]);
-
-    const firstProductos = async () => {
-        let a = await getProductos()
-        setProductos(a.map((producto) => ({
-            ...producto,
-            cantidadCarrito: 0
-        })))
-        
-        return productos;
-    }
 
     const getById = (id) => {
         return productos.find(producto => producto.id === id)
@@ -37,7 +36,7 @@ const ProductoContextProvider = ({children}) => {
     }
 
     return (
-        <ProductoContext.Provider value={{ productos, eliminarProducto, añadirProducto, firstProductos, getById }}>{children}
+        <ProductoContext.Provider value={{ productos, eliminarProducto, añadirProducto, getById }}>{children}
         </ProductoContext.Provider>
     );
 };
