@@ -4,9 +4,8 @@ import {ProductoContext} from "../helpers/productoContext"
 import { Link } from "react-router-dom";
 import Card from "./card";
 
-export default function Productos({ cant, title }) {
+export default async function Productos({ cant, title }) {
     const context = useContext(ProductoContext);
-    context.firstProductos();
 
     return (
         <section className="mx-auto w-[95%] md:w-[750px]">

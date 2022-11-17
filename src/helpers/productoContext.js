@@ -3,6 +3,7 @@ import { getProductos } from '../utils/axiosClient';
 
 const firstProductos = async () => {
     const a = await getProductos()
+    console.log("a")
     
     return (a.map((producto) => ({
         ...producto,
@@ -36,7 +37,7 @@ const ProductoContextProvider = ({children}) => {
     }
 
     return (
-        <ProductoContext.Provider value={{ productos, firstProductos, eliminarProducto, añadirProducto, getById }}>{children}
+        <ProductoContext.Provider value={{ productos, eliminarProducto, añadirProducto, getById }}>{children}
         </ProductoContext.Provider>
     );
 };
