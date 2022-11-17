@@ -26,7 +26,7 @@ export default function Card(props) {
                 <h3 className="text-lg font-bold pt-1 leading-tight">{props.title}</h3>
                 <p className="leading-tight">{props.description}</p>
             </Link>
-            <input type="number" className="m-2 border-b border-gray-300" placeholder="0" onChange={(evento) => {setCantidad(evento.target.value)}}/ >
+            <input type="number" className="m-2 border-b border-gray-300" placeholder="Ingrese una cantidad" onChange={(evento) => {setCantidad(evento.target.value)}}/ >
             <button className="w-fit px-4 py-2 bg-blue-200 rounded-md m-2" onClick={() => context.añadirProducto(props.id, cant)}>Añadir</button>
             <BotonEliminar / >
         </div>

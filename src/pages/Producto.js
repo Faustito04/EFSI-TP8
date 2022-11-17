@@ -9,10 +9,18 @@ export default function Producto() {
     let [cant, setCantidad] = useState(0)
     const context = useContext(ProductoContext);
 
+    useEffect(() => console.log("hola"), [])
+
     useEffect(() => {
-        setProducto(context.productos.find(prod => prod.id === id))
+        context.productos.forEach(prod => {
+            if (prod.id === id) {
+                setProducto(prod)
+            }
+        })
     }, [])
+    console.log(producto)
     console.log(context.productos)
+    console.log(id)
 
     function BotonCarrito() {
         if (producto.cantidadCarrito > 0) {
