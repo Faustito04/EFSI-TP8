@@ -5,10 +5,10 @@ const firstProductos = async () => {
     const a = await getProductos()
     console.log("a")
     
-    return (a.map((producto) => ({
+    return a.map((producto) => ({
         ...producto,
         cantidadCarrito: 0
-    })))
+    }))
 }
 
 export const ProductoContext = createContext({
