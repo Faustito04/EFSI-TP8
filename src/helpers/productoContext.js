@@ -1,9 +1,8 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { getProductos } from '../utils/axiosClient';
 
 const firstProductos = async () => {
     const a = await getProductos()
-    console.log("a")
     
     return a.map((producto) => ({
         ...producto,
@@ -11,29 +10,37 @@ const firstProductos = async () => {
     }))
 }
 
+
 export const ProductoContext = createContext({
-    productos: firstProductos()
+    productos: []
 });
 
 const ProductoContextProvider = ({children}) => {
     const [productos, setProductos] = useState([]);
+
+    useEffect(() => {
+        (async () => {
+            if (productos.length === 0) {
+                const data = await firstProductos()
+                setProductos(data)
+            }
+        })()
+    }, [])
 
     const getById = (id) => {
         return productos.find(producto => producto.id === id)
     }
 
     const añadirProducto = (id, cant) => {
-        const index = productos.indexOf(producto => producto.id === id)
-        const copiaProductos = [...productos]
-        copiaProductos[index].cantidadCarrito += cant
-        setProductos(copiaProductos)
+        let copia = [...productos]
+        copia[id-1].cantidadCarrito = parseInt(productos[id-1].cantidadCarrito) + parseInt(cant)
+        setProductos(copia)
     }
 
     const eliminarProducto = (id) => {
-        const index = productos.indexOf(producto => producto.id === id)
-        const copiaProductos = [...productos]
-        copiaProductos[index].cantidadCarrito = 0
-        setProductos(copiaProductos)
+        const copia = [...productos]
+        copia[id-1].cantidadCarrito = 0
+        setProductos(copia)
     }
 
     return (
