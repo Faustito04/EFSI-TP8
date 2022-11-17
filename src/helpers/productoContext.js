@@ -10,7 +10,6 @@ const firstProductos = async () => {
     }))
 }
 
-
 export const ProductoContext = createContext({
     productos: []
 });
